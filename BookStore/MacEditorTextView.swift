@@ -11,17 +11,23 @@ import SwiftUI
 
 struct MacEditorTextView: NSViewRepresentable {
     @Binding var text: String
+    var isEditable: Bool = true
+    var font: NSFont?    = .systemFont(ofSize: 14, weight: .regular)
     
-    var onEditingChanged    : () -> Void           = {}
-    var onCommit            : () -> Void          = {}
-    var onTextChange        : (String) -> Void   = { _ in }
+    var onEditingChanged: () -> Void       = {}
+    var onCommit        : () -> Void       = {}
+    var onTextChange    : (String) -> Void = { _ in }
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
     
     func makeNSView(context: Context) -> CustomTextView {
-        let textView = CustomTextView(text: self.text)
+        let textView = CustomTextView(
+            text: text,
+            isEditable: isEditable,
+            font: font
+        )
         textView.delegate = context.coordinator
         
         return textView
@@ -33,23 +39,37 @@ struct MacEditorTextView: NSViewRepresentable {
     }
 }
 
+// MARK: - Preview
+
 #if DEBUG
+
 struct MacEditorTextView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            MacEditorTextView(text: .constant("{ \n    planets { \n        name \n    }\n}"))
-                .environment(\.colorScheme, .dark)
-                .previewDisplayName("Dark Mode")
+            MacEditorTextView(
+                text: .constant("{ \n    planets { \n        name \n    }\n}"),
+                isEditable: true,
+                font: .userFixedPitchFont(ofSize: 14)
+            )
+            .environment(\.colorScheme, .dark)
+            .previewDisplayName("Dark Mode")
             
-            MacEditorTextView(text: .constant("{ \n    planets { \n        name \n    }\n}"))
-                .environment(\.colorScheme, .light)
-                .previewDisplayName("Light Mode")
+            MacEditorTextView(
+                text: .constant("{ \n    planets { \n        name \n    }\n}"),
+                isEditable: false
+            )
+            .environment(\.colorScheme, .light)
+            .previewDisplayName("Light Mode")
         }
     }
 }
+
 #endif
 
+// MARK: - Coordinator
+
 extension MacEditorTextView {
+    
     class Coordinator: NSObject, NSTextViewDelegate {
         var parent: MacEditorTextView
         var selectedRanges: [NSValue] = []
@@ -87,9 +107,11 @@ extension MacEditorTextView {
     }
 }
 
+// MARK: - CustomTextView
+
 final class CustomTextView: NSView {
     private var isEditable: Bool
-    private var font: NSFont
+    private var font: NSFont?
     
     weak var delegate: NSTextViewDelegate?
     
@@ -157,7 +179,7 @@ final class CustomTextView: NSView {
     }()
     
     // MARK: - Init
-    init(text: String, isEditable: Bool = true, font: NSFont = NSFont.systemFont(ofSize: 32, weight: .ultraLight)) {
+    init(text: String, isEditable: Bool, font: NSFont?) {
         self.font       = font
         self.isEditable = isEditable
         self.text       = text

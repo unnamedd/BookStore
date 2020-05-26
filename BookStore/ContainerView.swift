@@ -29,7 +29,7 @@ struct ContainerView: View {
                 var book = self.bookStore.books[index]
 
                 book.title = $0
-                
+
                 self.bookStore.books[index] = book
             }
         )
@@ -37,19 +37,26 @@ struct ContainerView: View {
         return HSplitView {
             List {
                 ForEach(self.bookStore.books.enumerated().map({ $0 }), id: \.element.id) { index, book in
-                    Text(book.title)
+                    BookRowView(book: book, isSelected: index == self.bookStore.selectedIndex)
                         .onTapGesture {
                             self.bookStore.selectedIndex = index
                     }
                 }
             }
+            .listStyle(SidebarListStyle())
             .frame(
                 minWidth: 300,
                 maxWidth: 400,
                 maxHeight: .infinity
             )
             
-            MacEditorTextView(text: bookContentBinding)
+            MacEditorTextView(
+                text: bookContentBinding,
+                isEditable: true,
+                font: .userFixedPitchFont(ofSize: 14)
+            )
+            .font(.body)
+            .disabled(true)
         }
         .frame(
             maxWidth: .infinity,
@@ -57,8 +64,6 @@ struct ContainerView: View {
         )
     }
 }
-    
-
 
 struct ContainerView_Previews: PreviewProvider {
     static var previews: some View {

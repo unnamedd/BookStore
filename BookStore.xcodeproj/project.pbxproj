@@ -17,6 +17,7 @@
 		918E163023FAA33700B2D0D3 /* BookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E162F23FAA33700B2D0D3 /* BookStore.swift */; };
 		918E163223FAA3EA00B2D0D3 /* Books.json in Resources */ = {isa = PBXBuildFile; fileRef = 918E163123FAA3EA00B2D0D3 /* Books.json */; };
 		918E163423FAA4BD00B2D0D3 /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E163323FAA4BD00B2D0D3 /* Books.swift */; };
+		918E163623FAD77500B2D0D3 /* BookRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E163523FAD77500B2D0D3 /* BookRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		918E162F23FAA33700B2D0D3 /* BookStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookStore.swift; sourceTree = "<group>"; };
 		918E163123FAA3EA00B2D0D3 /* Books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Books.json; sourceTree = "<group>"; };
 		918E163323FAA4BD00B2D0D3 /* Books.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
+		918E163523FAD77500B2D0D3 /* BookRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				918E163323FAA4BD00B2D0D3 /* Books.swift */,
 				918E162F23FAA33700B2D0D3 /* BookStore.swift */,
 				918E161A23FAA2A600B2D0D3 /* ContainerView.swift */,
+				918E163523FAD77500B2D0D3 /* BookRowView.swift */,
 				918E162B23FAA2E600B2D0D3 /* MacEditorTextView.swift */,
 				918E161C23FAA2A900B2D0D3 /* Assets.xcassets */,
 				918E162123FAA2A900B2D0D3 /* Main.storyboard */,
@@ -163,6 +166,7 @@
 			files = (
 				918E162E23FAA31F00B2D0D3 /* Book.swift in Sources */,
 				918E162C23FAA2E600B2D0D3 /* MacEditorTextView.swift in Sources */,
+				918E163623FAD77500B2D0D3 /* BookRowView.swift in Sources */,
 				918E161B23FAA2A600B2D0D3 /* ContainerView.swift in Sources */,
 				918E163023FAA33700B2D0D3 /* BookStore.swift in Sources */,
 				918E163423FAA4BD00B2D0D3 /* Books.swift in Sources */,
